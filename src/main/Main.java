@@ -1,5 +1,8 @@
 package main;
 
+import businessdelegate.BusinessDelegate;
+import businessdelegate.MarcaClient;
+import businessdelegate.Service;
 import dip.MarcaBO;
 import dip.MarcaDAO;
 import frontcontroller.FrontController;
@@ -108,6 +111,23 @@ public class Main {
 		controller.dispatchRequest("VEICULO");
 		// recebendo requisição para pagina .jsp
 		controller.dispatchRequest("MARCA");
+		
+		// Business Delegate Example
+		System.out.println("=========================");
+		System.out.println("Business DELEGATE EXAMPLE");
+		System.out.println("=========================");
+		
+		BusinessDelegate businessDeletage = new BusinessDelegate();
+		businessDeletage.execute(Service.JSONSERVICE);
+		MarcaClient marcaClient  = new MarcaClient(businessDeletage);
+		marcaClient.cadastrar();
+		
+		businessDeletage.execute(Service.XMLSERVICE);
+		marcaClient.cadastrar();
+		
+		
+		
+		
 		
 	}
 
